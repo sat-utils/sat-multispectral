@@ -51,7 +51,7 @@ class _BaseTestScene(unittest.TestCase):
         #geoimg1 = scene.products['']
 
 
-class TestScene(_BaseTestScene):
+class _TestScene(_BaseTestScene):
     """ Perform all _BaseTestScene tests with small generic images """
 
     @classmethod
