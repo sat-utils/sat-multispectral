@@ -1,13 +1,14 @@
-#!/usr/bin/env python
+"""
+    Product classes which represent files on disk and processing required
+"""
 
 import os
 import re
 import gippy
 import gippy.algorithms as algs
 
-"""
-    Product classes which represent files on disk and processing required
-"""
+from six import iteritems, iterkeys, itervalues
+
 
 # example band descriptions
 _band_descriptions = {
@@ -27,30 +28,62 @@ _band_descriptions = {
 class ImageFiles(object):
     """ Collection of image files """
 
-    # dictionary of , currently assumes different files
-    filenames = {}
+    def __init__(self, filenames):
+        """ Creates gippy GeoImage from the filenames provided.
+        filenames could be a list or a dictionary. A list should include the path to every image.
+        A dictionary should have the filepath as key and a list of bands as value.
+        list of bands should be in the order the bands are saved in the file.
+        Make sure to use band names instead of numbers
 
-    def __init__(self, filenames, bandnames=None):
-        """ Create collection of bands from {bandname; filename} dict """
-        if bandnames is not None:
-            if bandnames[0] == '':
-                bandnames = None
-        self.bandnames = bandnames
-        self.filenames = filenames
+        Example:
+
+        image1 = ImageFiles(['path/to/file1.tif', 'path/to/file2.tif', 'path/to/file3.tif'])
+        image2 = ImageFiles({
+            'path/to/file1.tif': ['red', 'green', 'blue'],
+            'path/to/file2.tif': ['green']
+        })
+
+        image1.open()
+        image2.open()
+
+        """
+        self.only_files = None
+        self.file_bands = None
+
+        if isinstance(filenames, list):
+            self.only_files = filenames
+
+        elif isinstance(filenames, dict):
+            for bands in itervalues(filenames):
+                if not isinstance(bands, list):
+                    raise Exception('bands must be list')
+            self.file_bands = filenames
+        else:
+            raise Exception('Filenames must be a list or a dictionary')
 
     def open(self):
         """ Open filenames as a GeoImage with bandnames """
-        if len(self.filenames) == 1:
-            fnames = self.filenames[0]
+
+        if self.only_files:
+            return gippy.GeoImage(self.only_files)
+        elif self.file_bands:
+            # making sure the filenames and bands are in the right order
+            # for example if the first file has one band, the second file has 3 bands
+            # the third file has 2 bands, iteration below ensures everything are
+            # in the right order
+            filenames = []
+            bands = []
+            for f, bs in iteritems(self.file_bands):
+                filenames.append(f)
+                bands.extend(bs)
+
+            geoimg = gippy.GeoImage(filenames)
+            for i, band in enumerate(bands):
+                geoimg.SetBandName(band, i + 1)
+
+            return geoimg
         else:
-            fnames = self.filenames
-        geoimg = gippy.GeoImage(fnames)
-        if self.bandnames is not None:
-            nb = max(geoimg.NumBands(), len(self.bandnames))
-            for i in range(0, nb):
-                geoimg.SetBandName(self.bandnames[i], i+1)
-        # else assume bandnames are set in file metadata
-        return geoimg
+            raise Exception('Unexpected error!')
 
 
 class Product(object):
