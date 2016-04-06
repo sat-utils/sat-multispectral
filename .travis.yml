@@ -11,7 +11,7 @@ addons:
     - gdal-bin
     - libgdal-dev
     - swig
-    - g++-4.8
+    - g++-4.8-multilib
 
 install:
 - pip install numpy
