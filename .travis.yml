@@ -13,7 +13,7 @@ addons:
     - gdal-bin
     - libgdal-dev
     - swig
-    - g++-4.8
+    - gcc-4.8
 
 install:
 - pip install numpy
