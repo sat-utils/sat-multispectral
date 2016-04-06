@@ -6,12 +6,14 @@ python:
 
 addons:
   apt:
+    sources:
+    - ubuntu-toolchain-r-test
     packages:
     - libgdal1h
     - gdal-bin
     - libgdal-dev
     - swig
-    - g++-4.8-multilib
+    - g++-4.8
 
 install:
 - pip install numpy
