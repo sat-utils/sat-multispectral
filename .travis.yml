@@ -13,9 +13,10 @@ addons:
     - gdal-bin
     - libgdal-dev
     - swig
-    - gcc-4.8
+    - g++-4.8
 
 install:
+- export CXX="g++-4.8" CC="gcc-4.8"
 - pip install numpy
 - pip install git+git://github.com/gipit/gippy.git@develop
 - pip install -e .
