@@ -18,7 +18,7 @@ addons:
 install:
 - export CXX="g++-4.8" CC="gcc-4.8"
 - pip install numpy
-- pip install git+git://github.com/gipit/gippy.git@develop
+- pip install git+git://github.com/gipit/gippy.git@lib_compile
 - pip install -e .
 
 script:
