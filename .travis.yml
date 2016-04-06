@@ -6,6 +6,7 @@ python:
 
 install:
 - pip install numpy
+- pip install git+git://github.com/gipit/gippy.git@develop
 - pip install -e .
 
 script:
