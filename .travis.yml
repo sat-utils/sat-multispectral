@@ -4,6 +4,19 @@ python:
 - '3.4'
 - '3.5'
 
+addons:
+  apt:
+    packages:
+    - libgdal1h
+    - gdal-bin
+    - libproj-dev
+    - libhdf5-serial-dev
+    - libpng-dev
+    - libgdal-dev
+    - libatlas-dev
+    - libatlas-base-dev
+    - gfortran
+
 install:
 - pip install numpy
 - pip install git+git://github.com/gipit/gippy.git@develop
