@@ -1,8 +1,8 @@
-sat-process
-+++++++++++
+satio
++++++
 
-.. image:: https://travis-ci.org/sat-utils/sat-process.svg?branch=develop
-    :target: https://travis-ci.org/sat-utils/sat-process
+.. image:: https://travis-ci.org/sat-utils/satio.svg?branch=develop
+    :target: https://travis-ci.org/sat-utils/satio
 
 This is a Python library for processing toolkit for Open Raster Data. This is library can be used for creating data specific processing libraries and command line utilities.
 
