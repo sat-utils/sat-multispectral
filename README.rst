@@ -117,3 +117,8 @@ Band names are used instead of band numbers, which are unique to each sensor. Th
 +-----------+-------------+-----------+-----------+-----------+------------+-------+
 | LWIR2     | 11.5 - 12.5 |           |           | 11        |            | 32    |
 +-----------+-------------+-----------+-----------+-----------+------------+-------+
+
+
+About
+=====
+Satio was made by `Development Seed <http://developmentseed.org>`_.

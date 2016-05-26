@@ -20,7 +20,7 @@ setup(
     author='Alireza J (scisco), Matthew Hanson (matthewhanson)',
     description='Multispectral processing on geospatial raster data',
     url='https://github.com/sat-utils/sat-process',
-    license='CC0',
+    license='MIT',
     classifiers=[
         'Framework :: Pytest',
         'Topic :: Scientific/Engineering :: GIS',
